@@ -1,0 +1,16 @@
+digraph G {
+ node[shape=none fontname=Helvetica]
+ rankdir=TB;
+ n0[ label = <
+<table>
+<tr><td bgcolor="lightgray">Bitácora del administrador </td></tr></table> > ];
+n1[ label = <
+<table>
+<tr><td bgcolor="white">Se aceptó a Obito Uchiha, el 02-28-2023 00:33</td></tr>
+<tr><td bgcolor="white">Se rechazó a Madara Uchiha, el 02-28-2023 00:33</td></tr>
+<tr><td bgcolor="white">Se aceptó a Ebany Larios, el 02-28-2023 00:33</td></tr>
+<tr><td bgcolor="white">Se aceptó a Cristian Suy, el 02-28-2023 00:33</td></tr>
+<tr><td bgcolor="white">Se aceptó a Leonardo Martinez, el 02-28-2023 00:33</td></tr>
+</table> > ];
+n0->n1[dir=none]
+}

@@ -1,0 +1,50 @@
+digraph G {
+ node[shape=none fontname=Helvetica]
+ n0[ label = <
+<table>
+<tr><td bgcolor="lightgray">Cola en espera: 11</td></tr></table> > ];
+n1
+[label="Carné:201700002
+Nombre: Kabuto Yakushi"];
+n2
+[label="Carné:201700003
+Nombre: Papeles Konan"];
+n3
+[label="Carné:201700004
+Nombre: Judío Hidan"];
+n4
+[label="Carné:201700005
+Nombre: Orochimaru Snake"];
+n5
+[label="Carné:201700006
+Nombre: Marionette Sasori"];
+n6
+[label="Carné:201700007
+Nombre: Kakuzu Mooney"];
+n7
+[label="Carné:201700008
+Nombre: Onion Nagato"];
+n8
+[label="Carné:201700009
+Nombre: Kisame Hoshigaki"];
+n9
+[label="Carné:201700010
+Nombre: Deidara Pum"];
+n10
+[label="Carné:201700011
+Nombre: Itachi Uchiha"];
+n11
+[label="Carné:201700012
+Nombre: Aloevera Zetsu"];
+n0->n1[dir=back]
+n1->n2[dir=back]
+n2->n3[dir=back]
+n3->n4[dir=back]
+n4->n5[dir=back]
+n5->n6[dir=back]
+n6->n7[dir=back]
+n7->n8[dir=back]
+n8->n9[dir=back]
+n9->n10[dir=back]
+n10->n11[dir=back]
+}
