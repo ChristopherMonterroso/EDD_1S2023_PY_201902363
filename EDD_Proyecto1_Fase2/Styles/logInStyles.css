@@ -14,6 +14,7 @@ body {
     top: 50%;
     left: 50%;
     width: 400px;
+    
     padding: 40px;
     transform: translate(-50%, -50%);
     background: linear-gradient(#006992, #2E1760);
@@ -167,8 +168,8 @@ a{
       bottom: 100%;
     }
   }
-  @media only screen and (max-width: 600px) {
-    form {
-      width: 100%;
+  @media only screen and (max-width: 400px) {
+    .login-box{
+      width: 300px;
     }
   }
