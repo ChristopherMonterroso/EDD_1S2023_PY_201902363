@@ -6,11 +6,14 @@ digraph G {
 <tr><td bgcolor="lightgray">Bitácora del administrador </td></tr></table> > ];
 n1[ label = <
 <table>
-<tr><td bgcolor="white">Se aceptó a Obito Uchiha, el 02-28-2023 00:33</td></tr>
-<tr><td bgcolor="white">Se rechazó a Madara Uchiha, el 02-28-2023 00:33</td></tr>
-<tr><td bgcolor="white">Se aceptó a Ebany Larios, el 02-28-2023 00:33</td></tr>
-<tr><td bgcolor="white">Se aceptó a Cristian Suy, el 02-28-2023 00:33</td></tr>
-<tr><td bgcolor="white">Se aceptó a Leonardo Martinez, el 02-28-2023 00:33</td></tr>
+<tr><td bgcolor="white">Se rechazó a Manolo Ramirez, el 03-01-2023 11:36</td></tr>
+<tr><td bgcolor="white">Se rechazó a Kevin Castaneda, el 03-01-2023 11:36</td></tr>
+<tr><td bgcolor="white">Se aceptó a Kevin Hernandez, el 03-01-2023 11:36</td></tr>
+<tr><td bgcolor="white">Se aceptó a Diana Berducido, el 03-01-2023 11:36</td></tr>
+<tr><td bgcolor="white">Se aceptó a Ebany Larios, el 03-01-2023 11:36</td></tr>
+<tr><td bgcolor="white">Se aceptó a Leonardo Martinez, el 03-01-2023 11:36</td></tr>
+<tr><td bgcolor="white">Se aceptó a Cristian Suy, el 03-01-2023 11:36</td></tr>
+<tr><td bgcolor="white">Se aceptó a Christopher Monterroso, el 03-01-2023 11:35</td></tr>
 </table> > ];
 n0->n1[dir=none]
 }

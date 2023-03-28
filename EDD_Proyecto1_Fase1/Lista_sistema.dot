@@ -2,21 +2,29 @@ digraph G {
  node[shape=none fontname=Helvetica]
  n0[ label = <
 <table>
-<tr><td bgcolor="lightgray">Estudiantes en sistema 4</td></tr></table> > ];
+<tr><td bgcolor="lightgray">Estudiantes en sistema 6</td></tr></table> > ];
 n1
 [label="Carné:201403877
 Nombre: Ebany Larios"];
 n2
-[label="Carné:201700001
-Nombre: Obito Uchiha"];
-n3
-[label="Carné:201709018
+[label="Carné:201700918
 Nombre: Cristian Suy"];
-n4
+n3
 [label="Carné:201780044
 Nombre: Leonardo Martinez"];
+n4
+[label="Carné:201902363
+Nombre: Christopher Monterroso"];
+n5
+[label="Carné:202000277
+Nombre: Diana Berducido"];
+n6
+[label="Carné:202001053
+Nombre: Kevin Hernandez"];
 n0->n1[dir=back]
 n1->n2[dir=both]
 n2->n3[dir=both]
 n3->n4[dir=both]
+n4->n5[dir=both]
+n5->n6[dir=both]
 }

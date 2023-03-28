@@ -2,40 +2,127 @@ digraph G {
  node[shape=none fontname=Helvetica]
  n0[ label = <
 <table>
-<tr><td bgcolor="lightgray">Cola en espera: 11</td></tr></table> > ];
+<tr><td bgcolor="lightgray">Cola en espera: 39</td></tr></table> > ];
 n1
-[label="Carné:201700002
-Nombre: Kabuto Yakushi"];
+[label="Carné:202106484
+Nombre: Wendi Vicente"];
 n2
-[label="Carné:201700003
-Nombre: Papeles Konan"];
+[label="Carné:201944994
+Nombre: Robin Buezo"];
 n3
-[label="Carné:201700004
-Nombre: Judío Hidan"];
+[label="Carné:202010770
+Nombre: Luis Moreira"];
 n4
-[label="Carné:201700005
-Nombre: Orochimaru Snake"];
+[label="Carné:199919737
+Nombre: Williams Constanza"];
 n5
-[label="Carné:201700006
-Nombre: Marionette Sasori"];
+[label="Carné:201700792
+Nombre: Dennis Escobar"];
 n6
-[label="Carné:201700007
-Nombre: Kakuzu Mooney"];
+[label="Carné:200715321
+Nombre: Jim Melendez"];
 n7
-[label="Carné:201700008
-Nombre: Onion Nagato"];
+[label="Carné:201700907
+Nombre: Alma Manchame"];
 n8
-[label="Carné:201700009
-Nombre: Kisame Hoshigaki"];
+[label="Carné:201602404
+Nombre: Kevin Secaida"];
 n9
-[label="Carné:201700010
-Nombre: Deidara Pum"];
+[label="Carné:9616453
+Nombre: Luis Pirir"];
 n10
-[label="Carné:201700011
-Nombre: Itachi Uchiha"];
+[label="Carné:201807169
+Nombre: Erick Chacon"];
 n11
-[label="Carné:201700012
-Nombre: Aloevera Zetsu"];
+[label="Carné:201710130
+Nombre: Kevin Sotoj"];
+n12
+[label="Carné:201700315
+Nombre: Alejandro Yac"];
+n13
+[label="Carné:202100953
+Nombre: Damaris Muralles"];
+n14
+[label="Carné:201807389
+Nombre: Gladys Ajuchan"];
+n15
+[label="Carné:201800678
+Nombre: Wilmer Vasquez"];
+n16
+[label="Carné:202002536
+Nombre: Angela Pinelo"];
+n17
+[label="Carné:202004060
+Nombre: Gerber Ordonez"];
+n18
+[label="Carné:202109732
+Nombre: Jose Galdamez"];
+n19
+[label="Carné:201403669
+Nombre: William Ambrocio"];
+n20
+[label="Carné:202004812
+Nombre: Fredy Quijada"];
+n21
+[label="Carné:201544815
+Nombre: Jose Boguerin"];
+n22
+[label="Carné:202101499
+Nombre: Denis Coronado"];
+n23
+[label="Carné:201602516
+Nombre: Bryan Ignacio"];
+n24
+[label="Carné:202109715
+Nombre: Pablo Barahona "];
+n25
+[label="Carné:199919737
+Nombre: Williams Constanza"];
+n26
+[label="Carné:201807351
+Nombre: Brian Garcia "];
+n27
+[label="Carné:202001570
+Nombre: Nataly Guzman"];
+n28
+[label="Carné:202109754
+Nombre: Aldo Vasquez"];
+n29
+[label="Carné:202100265
+Nombre: Maria Tebalan"];
+n30
+[label="Carné:202000127
+Nombre: Moises Conde"];
+n31
+[label="Carné:202002591
+Nombre: Jorge Zamora"];
+n32
+[label="Carné:201944766
+Nombre: Javier Pablo"];
+n33
+[label="Carné:201900621
+Nombre: Erick Gonzalez"];
+n34
+[label="Carné:201902363
+Nombre: Christopher Monterroso"];
+n35
+[label="Carné:202104160
+Nombre: Steven Mejia"];
+n36
+[label="Carné:201603028
+Nombre: Oscar Morales"];
+n37
+[label="Carné:202010814
+Nombre: Luis Garcia"];
+n38
+[label="Carné:201404028
+Nombre: Helber Urias"];
+n39
+[label="Carné:202000896
+Nombre: Javier Matias"];
+n40
+[label="Carné:8318054
+Nombre: Hugo Rosal"];
 n0->n1[dir=back]
 n1->n2[dir=back]
 n2->n3[dir=back]
@@ -47,4 +134,32 @@ n7->n8[dir=back]
 n8->n9[dir=back]
 n9->n10[dir=back]
 n10->n11[dir=back]
+n11->n12[dir=back]
+n12->n13[dir=back]
+n13->n14[dir=back]
+n14->n15[dir=back]
+n15->n16[dir=back]
+n16->n17[dir=back]
+n17->n18[dir=back]
+n18->n19[dir=back]
+n19->n20[dir=back]
+n20->n21[dir=back]
+n21->n22[dir=back]
+n22->n23[dir=back]
+n23->n24[dir=back]
+n24->n25[dir=back]
+n25->n26[dir=back]
+n26->n27[dir=back]
+n27->n28[dir=back]
+n28->n29[dir=back]
+n29->n30[dir=back]
+n30->n31[dir=back]
+n31->n32[dir=back]
+n32->n33[dir=back]
+n33->n34[dir=back]
+n34->n35[dir=back]
+n35->n36[dir=back]
+n36->n37[dir=back]
+n37->n38[dir=back]
+n38->n39[dir=back]
 }
