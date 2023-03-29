@@ -6,7 +6,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    background: linear-gradient(#171738, #2E1760);
+    background: linear-gradient(#171738, #174b60);
 }
 
 .login-box {
@@ -17,7 +17,7 @@ body {
     
     padding: 40px;
     transform: translate(-50%, -50%);
-    background: linear-gradient(#006992, #2E1760);
+    background: linear-gradient(#006992, #172660);
     box-sizing: border-box;
     box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
     border-radius: 10px;
@@ -84,13 +84,10 @@ a{
   transform: translate(-50%, -50%); /* Centra la etiqueta ancla */
 }
 .login-box a:hover {
-    background: #03b4f4;
+    background: #008cc3;
     color: #fff;
     border-radius: 1px;
-    box-shadow: 0 0 5px #03b4f4,
-        0 0 25px #03b4f4,
-        0 0 50px #03b4f4,
-        0 0 100px #03b4f4;
+    
 }
 .login-box a span {
     position: absolute;
@@ -101,7 +98,7 @@ a{
     left: -100%;
     width: 100%;
     height: 2px;
-    background: linear-gradient(90deg, transparent, #03e9f4);
+    background: linear-gradient(90deg, transparent, #03ecf4);
     animation: btn-anim1 1s linear infinite;
   }
   @keyframes btn-anim1 {
@@ -117,7 +114,7 @@ a{
     right: 0;
     width: 2px;
     height: 100%;
-    background: linear-gradient(180deg, transparent, #03e9f4);
+    background: linear-gradient(180deg, transparent, #ccf403);
     animation: btn-anim2 1s linear infinite;
     animation-delay: .25s
   }
@@ -136,7 +133,7 @@ a{
     right: -100%;
     width: 100%;
     height: 2px;
-    background: linear-gradient(270deg, transparent, #03e9f4);
+    background: linear-gradient(270deg, transparent, #ccf403);
     animation: btn-anim3 1s linear infinite;
     animation-delay: .5s
   }
