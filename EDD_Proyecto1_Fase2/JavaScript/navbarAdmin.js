@@ -16,5 +16,5 @@ $('ul.tabs li a').on('click', function () {
 });
 
 function logOut(){
-	window.location.replace("/html/index.html")
+	window.location.replace("../html/index.html")
 }

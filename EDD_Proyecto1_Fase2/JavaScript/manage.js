@@ -8,5 +8,5 @@ function authenticateUser(){
     }
 }
 function openAdminPage(){
-    window.location.replace("/html/admin.html")
+    window.location.replace("../html/admin.html")
 }
