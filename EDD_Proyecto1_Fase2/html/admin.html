@@ -5,22 +5,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://github.com/ChristopherMonterroso/EDD_1S2023_PY_201902363/tree/main/EDD_Proyecto1_Fase2/Styles/adminStyles.css">
+    <link rel="stylesheet" href="../Styles/adminStyles.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <title>EDD GoDrive - Admin</title>
+    
 </head>
 
 <body>
     <header>
         <div class="container">
-            <h3>Dashboard</h3>
-            <ul>
-                <li>Ver estudiante</li>
-                <li>Árbol de estudiantes</li>
-                <li>Carga masiva</li>
-                <li>Cerrar sesión</li>
+            <h3>Dashboard - Administrador</h3>
+            <ul class="tabs">
+                <li><a href="#tabStudent"  >Ver estudiantes</a> </li>
+                <li><a href="#tabTree">Árbol de estudiantes</a></li>
+                <li><a href="#tabUpload">Carga masiva</a></li>
+                <li><a href="#">Cerrar sesión</a></li>
             </ul>
+
         </div>
     </header>
+    <div class="section">
+        <article id="tabStudent">
+            <h1>Estudiantes en el sistema</h1>
+            <p></p>
+        </article>
+        <article id="tabTree">
+            <h1>Árbol </h1>
+            <p></p>
+        </article>
+        <article id="tabUpload">
+            <h1>Cargue el archivo json para la carga.</h1>
+            <p></p>
+        </article>
+    </div>
+    <script src="../JavaScript/navbarAdmin.js"></script>
+    
 </body>
 
 </html>
