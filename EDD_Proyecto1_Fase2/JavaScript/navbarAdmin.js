@@ -1,6 +1,3 @@
-
-
-
 $('ul.tabs li a:first').addClass('active');
 $('.section article').hide();
 $('.section article:first').show();

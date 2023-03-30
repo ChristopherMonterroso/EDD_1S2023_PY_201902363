@@ -8,5 +8,5 @@ function authenticateUser(){
     }
 }
 function openAdminPage(){
-    window.location.replace("../html/admin.html")
+    window.location.replace("../EDD_1S2023_PY_201902363/html/admin.html")
 }
