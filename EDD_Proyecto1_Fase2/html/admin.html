@@ -8,21 +8,26 @@
     <link rel="stylesheet" href="../Styles/adminStyles.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <title>EDD GoDrive - Admin</title>
-    
+
 </head>
 
 <body>
     <header>
-        <div class="container">
-            <h3>Dashboard - Administrador</h3>
-            <ul class="tabs">
-                <li><a href="#tabStudent"  >Ver estudiantes</a> </li>
+        <div class="logo">Administrador</div>
+        <div class="hamburguer">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <nav class="nav-bar">
+            <ul class ="tabs">
+                <li><a href="#tabStudent" class="active">Ver estudiantes</a></li>
                 <li><a href="#tabTree">Árbol de estudiantes</a></li>
                 <li><a href="#tabUpload">Carga masiva</a></li>
-                <li><a href="#" onclick=logOut()>Cerrar sesión</a></li>
-            </ul>
+                <li><a href="#" onclick=logOut()>Cerrar Sesión</a></li>
 
-        </div>
+            </ul>
+        </nav>
     </header>
     <div class="section">
         <article id="tabStudent">
@@ -38,8 +43,15 @@
             <p></p>
         </article>
     </div>
+    <script>
+        hamburger = document.querySelector(".hamburguer");
+        navBar = document.querySelector(".nav-bar");
+        hamburger.onclick = function () {
+            navBar.classList.toggle("active");
+        }
+    </script>
     <script src="navbarAdmin.js"></script>
-    
+
 </body>
 
 </html>
