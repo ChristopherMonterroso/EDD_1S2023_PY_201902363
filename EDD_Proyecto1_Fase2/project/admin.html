@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../Styles/adminStyles.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600" rel="stylesheet">
     <title>EDD GoDrive - Admin</title>
 
 </head>
@@ -20,27 +21,52 @@
             <div class="line"></div>
         </div>
         <nav class="nav-bar">
-            <ul class ="tabs">
+            <ul class="tabs">
                 <li><a href="#tabStudent" class="active">Ver estudiantes</a></li>
                 <li><a href="#tabTree">Árbol de estudiantes</a></li>
-                <li><a href="#tabUpload">Carga masiva</a></li>
+                <li><a href="#uploadFile">Carga masiva</a></li>
                 <li><a href="#" onclick=logOut()>Cerrar Sesión</a></li>
 
             </ul>
         </nav>
     </header>
+
     <div class="section">
         <article id="tabStudent">
             <h1>Estudiantes en el sistema</h1>
-            <p></p>
+            <table class="table" id="table">
+                <thead>
+                    <th>Carnet</th>
+                    <th>Nombre</th>
+                    <th>Password</th>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+
         </article>
+
+
         <article id="tabTree">
             <h1>Árbol </h1>
             <p></p>
         </article>
-        <article id="tabUpload">
-            <h1>Cargue el archivo json para la carga.</h1>
-            <p></p>
+
+
+        <article id="uploadFile">
+            <h1>Cargar archivo JSON.</h1>
+            <form  onsubmit="loadStudentsForm(event)">
+                <div class="drag">
+                    <label for="inputFile" class="drop-container">
+                        <span class="drop-title">Coloque el archivo JSON aquí</span>
+                        ó
+                        <input type="file" id="inputFile" accept="JSON/*" required>
+                    </label>
+
+                </div>
+                <button type="submit" class="button" >Cargar estudiantes</button>
+            </form>
         </article>
     </div>
     <script>
@@ -50,8 +76,9 @@
             navBar.classList.toggle("active");
         }
     </script>
-    <script src="navbarAdmin.js"></script>
-
+    <script src="./js/admin.js"></script>
+    <script src="./js/lib/cycle.js"></script>
+    <script src="./js/structures/avl-tree.js"></script>
 </body>
 
 </html>
