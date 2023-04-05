@@ -9,6 +9,6 @@ function authenticateUser(){
     }
 }
 function openAdminPage(){
-   
+
     window.location.replace("admin.html")
 }

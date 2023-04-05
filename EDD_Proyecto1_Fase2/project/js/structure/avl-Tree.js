@@ -1,20 +1,21 @@
-class Node{
+class AvlNode{
     constructor(item){
-        this.item= item;
+        this.item = item;
         this.left = null;
         this.right = null;
-        this.height = 0;
+        this.height = 1;
     }
 }
-let  nodes = "";
-let  connections ="";
+let = nodes = "";
+let = connections = "";
 
-class avlTree{
+class AvlTree{
     constructor(){
         this.root = null;
     }
+
     insert(item){
-        this.root = this.insertRecursive(item, this.root);
+        this.root = this.#insertRecursive(item, this.root);
     }
 
     getHeight(node){
@@ -23,6 +24,7 @@ class avlTree{
     getMaxHeight(leftNode, rightNode){
         return leftNode.height > rightNode.height ? leftNode.height : rightNode.height;
     }
+
     #insertRecursive(item, node){
         if(node == null){
             node = new AvlNode(item);
@@ -45,11 +47,13 @@ class avlTree{
                 }
             }
         }else{
-            alert("Elemento ya existe en el árbol");
+            alert("archivo ya existente");
         }
         node.height = this.getMaxHeight(this.getHeight(node.left), this.getHeight(node.right)) + 1;
         return node;
     }
+
+
     #rotateRight(node1){
         node2 = node1.right;
         node1.right = node2.left;
@@ -74,9 +78,8 @@ class avlTree{
         node.right = this.#rotateLeft(node.right);
         return this.#rotateRight(node);
     }
-     //--------------------------------------------------------------------------
-    //                  REPORTE DEL ARBOL
-    //--------------------------------------------------------------------------
+
+   
     treeGraph(){       
         nodes = "";
         connections = "";
@@ -96,9 +99,7 @@ class avlTree{
         }
     }
     
-    //--------------------------------------------------------------------------
-    //                  RECORRIDO IN ORDER
-    //--------------------------------------------------------------------------
+   
     inOrder(){
         let html = this.#inOrderRecursive(this.root);
         return html;
@@ -110,9 +111,9 @@ class avlTree{
         }
         row +=`
             <tr>
-                <td>${current.item.carnet}</td>
-                <td>${current.item.nombre}</td>
-                <td>${current.item.password}</td>
+                <td data-th="Carnet">${current.item.carnet}</td>
+                <td data-th="Nombre">${current.item.nombre}</td>
+                <td data-th="Password">${current.item.password}</td>
             </tr>
         `;
         if(current.right != null){
@@ -120,9 +121,7 @@ class avlTree{
         }
         return row;
     }
-    //--------------------------------------------------------------------------
-    //                  RECORRIDO PRE ORDER
-    //--------------------------------------------------------------------------
+
     preOrder(){
         let html = this.#preOrderRecursive(this.root);
         return html;
@@ -131,9 +130,9 @@ class avlTree{
         let row = "";
         row +=`
             <tr>
-                <td>${current.item.carnet}</td>
-                <td>${current.item.nombre}</td>
-                <td>${current.item.password}</td>
+                  <td data-th="Carnet">${current.item.carnet}</td>
+                  <td data-th="Nombre">${current.item.nombre}</td>
+                <td data-th="Password">${current.item.password}</td>
             </tr>
         `;
         if(current.left != null){
@@ -145,9 +144,6 @@ class avlTree{
         return row;
     }
 
-    //--------------------------------------------------------------------------
-    //                  RECORRIDO POST ORDER
-    //--------------------------------------------------------------------------
     postOrder(){
         let html = this.#postOrderRecursive(this.root);
         return html;
@@ -162,9 +158,9 @@ class avlTree{
         }
         row +=`
             <tr>
-                <td>${current.item.carnet}</td>
-                <td>${current.item.nombre}</td>
-                <td>${current.item.password}</td>
+                  <td data-th="Carnet">${current.item.carnet}</td>
+                  <td data-th="Nombre">${current.item.nombre}</td>
+                <td data-th="Password">${current.item.password}</td>
             </tr>
         `;
         return row;
@@ -172,4 +168,3 @@ class avlTree{
 
 
 }
-
