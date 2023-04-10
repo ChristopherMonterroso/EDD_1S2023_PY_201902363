@@ -34,9 +34,11 @@ Estructuras de datos utilizadas:
 
 ## Manual de usuario
 
-- Login
+- Login:
+
+    Ventana principal en la cual el administrador o usuario puede acceder a su perfil.
+![Login Screenshot](/documentation/ss-png/login.png)
 
 
 
-![Login Screenshot](/documentation/ss-png)
 
