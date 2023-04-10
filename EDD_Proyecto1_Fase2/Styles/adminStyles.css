@@ -82,7 +82,7 @@ input[type="radio"] {
 	border-color: #fff;
   }
 
-  /* Estilos para el contenedor del menú */
+
   .radio-menu {
 	display: flex;
 	padding: 20px;
@@ -197,8 +197,11 @@ input[type="radio"] {
 .graph{
 	width: 80%;
 	display: block;
-	margin: 0 auto;
+	margin: 30px auto;
+	cursor:  zoom-in;
+	transition: transform 0.3s ease;
 }
+
 /* Seccion donde se sube el archivo */
 /*--------------------------------------------------------------------------------------------------------------*/
 
