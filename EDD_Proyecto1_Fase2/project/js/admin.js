@@ -6,6 +6,7 @@ function loadStudentsForm(event) {
     const inputFile = document.getElementById('inputFile');
     const file = inputFile.files[0];
     let studentsArray = [];
+    
     try {
         let reader = new FileReader();
 
@@ -13,6 +14,7 @@ function loadStudentsForm(event) {
         reader.onload = () => {
 
             studentsArray = JSON.parse(reader.result).alumnos;
+            
             $('#table tbody').html(
                 studentsArray.map((item, index) => {
                     return (`
@@ -24,11 +26,19 @@ function loadStudentsForm(event) {
                     `);
                 }).join('')
             )
+            
             for (let i = 0; i < studentsArray.length; i++) {
-                avlTree.insert(studentsArray[i]);
+                let item={
+                    carnet:studentsArray[i].carnet,
+                    nombre:studentsArray[i].nombre,
+                    password:studentsArray[i].password,
+                    carpeta_raiz:studentsArray[i].carpeta_raiz
+                }
+                avlTree.insert(item);
             }
             // GUARDAR EN LOCAL STORAGE
             localStorage.setItem("avlTree", JSON.stringify(avlTree))
+            alert("Estudiantes cargados")
             
         }
     } catch (error) {
@@ -47,7 +57,7 @@ function showLocalStudents() {
 }
 function showAvlGraph(){
     let url = 'https://quickchart.io/graphviz?graph=';
-    let body = `digraph G { ${avlTree.treeGraph()} }`
+    let body = `digraph G { node[shape=circle] bgcolor=transparent ${avlTree.treeGraph()} }`
     console.log(body);
     $("#graph").attr("src", url + body);
 }
@@ -97,7 +107,6 @@ $('ul.tabs li a').on('click', function () {
 });
 
 function logOut() {
-    localStorage.clear();
     window.location.replace("index.html")
 }
 $(document).ready(showLocalStudents);

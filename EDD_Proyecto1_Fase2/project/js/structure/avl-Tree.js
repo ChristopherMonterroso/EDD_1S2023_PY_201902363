@@ -1,162 +1,221 @@
-class AvlNode{
-    constructor(item){
+class AvlNode {
+    constructor(item) {
         this.item = item;
         this.left = null;
         this.right = null;
-        this.height = 1;
+        this.height = 0;
     }
 }
 let = nodes = "";
 let = connections = "";
 
-class AvlTree{
-    constructor(){
+class AvlTree {
+    constructor() {
         this.root = null;
     }
 
     insert(item){
         this.root = this.#insertRecursive(item, this.root);
+        this.getHeight(this.root)
+        this.root=this.checkBalance(this.root)
     }
-
-    getHeight(node){
-        return node === null ? -1 : node.height;
-    }
-    getMaxHeight(leftNode, rightNode){
-        return leftNode.height > rightNode.height ? leftNode.height : rightNode.height;
-    }
-
     #insertRecursive(item, node){
-        if(node == null){
-            node = new AvlNode(item);
-        }else if(item.carnet < node.item.carnet){
-            node.left = this.#insertRecursive(item, node.left);
-            if(this.getHeight(node.left) - this.getHeight(node.right) == 2){
-                if(item.carnet < node.left.item.carnet){
-                    node = this.#rotateLeft(node);
-                }else{
-                    node = this.#doubleLeft(node);
-                }
-            }
-        }else if(item.carnet > node.item.carnet){
-            node.right = this.#insertRecursive(item, node.right);
-            if(this.getHeight(node.right) - this.getHeight(node.left) == 2){
-                if(item.carnet < node.right.item.carnet){
-                    node = this.#rotateRight(node);
-                }else{
-                    node = this.#doubleRight(node);
-                }
-            }
-        }else{
-            alert("archivo ya existente");
+        if(node==null){
+            node=new AvlNode(item)
+        }else if(item.carnet<node.item.carnet){
+            //left
+            node.left=this.#insertRecursive(item,node.left)
+
+        }else if(item.carnet>node.item.carnet){
+            //right
+            node.right=this.#insertRecursive(item,node.right)
         }
-        node.height = this.getMaxHeight(this.getHeight(node.left), this.getHeight(node.right)) + 1;
-        return node;
+        return node
     }
+    getHeight(node){
+        node.height=0
+        var heightRight=0
+        var heightLeft=0
+        if(node.left){
+            heightLeft-=this.getHeight(node.left)
+        }
+        if(node.right){
+            heightRight+=this.getHeight(node.right)
+        }
+        node.height=heightRight+heightLeft
 
+        return Math.max(heightRight, Math.abs(heightLeft))+1
+    }
+    checkBalance(node){
+        if(node.left){
+            node.left = this.checkBalance(node.left)
+        }
+        if(node.right){
+            node.right=this.checkBalance(node.right)
+        }
+        this.getHeight(this.root)
+        if(node.height>1 || node.height<-1){
+            node = this.balancear(node)
+            this.getHeight(this.root)
+            node=this.checkBalance(node)
+        }
+        return node
+    }
+    balancear(parent){
+        if(parent.height>1 && parent.right && (parent.right.height>1||parent.right.height<-1)){
+            parent.right = this.balancear(parent.right)
+        }else if(parent.height<-1 && parent.left && (parent.left.height<-1||parent.left.height>1)){
+            parent.left = this.balancear(parent.left)
+        }else if(parent.height<0 &&parent.left.height===-1){
+            if(parent.left.right){
+                var saveRight = parent.left.right
+            }
+            if(parent.left.left){
+                var saveLeft =parent.left.left
+            }
+            parent.left.right = new AvlNode(parent.item)
+            parent.left.right.right=parent.right
+            parent =parent.left
+            parent.right.left=saveRight
+            parent.left =saveLeft
+        }else if(parent.height<0 &&parent.left.height===1){
+            if(parent.left.right.left){
+                var saveLeft = parent.left.right.left
+            }if(parent.left.right.right){
+                var saveRight = parent.left.right.right
+            }
+            parent.left.right.right = new AvlNode(parent.item)
+            parent.left.right.right.right = parent.right
+            parent.left.right.left = new AvlNode(parent.left.item)
+            parent.left.right.left.left=parent.left.left
+            parent =parent.left.right
+            parent.left.right = saveLeft
+            parent.right.left = saveRight
+        }else if(parent.height>0 &&parent.right.height===1){
+            if(parent.right.left){
+                var saveLeft =parent.right.left
+            }if(parent.right.right){
+                var saveRight = parent.right.right
+            }
+            parent.right.left = new AvlNode(parent.item)
+            parent.right.left.left =parent.left
+            parent = parent.right
+            parent.left.right = saveLeft
+            parent.right=saveRight
 
-    #rotateRight(node1){
-        node2 = node1.right;
-        node1.right = node2.left;
-        node2.left = node1;
-        node1.height = this.getMaxHeight(this.getHeight(node1.left), this.getHeight(node1.right)) + 1;
-        node2.height = this.getMaxHeight(this.getHeight(node2.right), node1.height) + 1;
-        return node2;
-    }
-    #rotateLeft(node2){
-        node1 = node2.left;
-        node2.left = node1.right;
-        node1.right = node2;
-        node2.height = this.getMaxHeight(this.getHeight(node2.left), this.getHeight(node2.right)) + 1;
-        node1.height = this.getMaxHeight(this.getHeight(node1.left), node2.height) + 1;
-        return node1;
-    }
-    #doubleLeft(node){
-        node.left = this.#rotateRight(node.left);
-        return this.#rotateLeft(node);
-    }
-    #doubleRight(node){
-        node.right = this.#rotateLeft(node.right);
-        return this.#rotateRight(node);
-    }
+        }else if(parent.height>0 &&parent.right.height===-1){
+            if(parent.right.left.right){
+                var saveRight = parent.right.left.right
+            }
+            if(parent.right.left.left){
+                saveLeft=parent.right.left.left
+            }
+            parent.right.left.left = new AvlNode(parent.item)
+            parent.right.left.right = new AvlNode(parent.right.item)
+            parent.right.left.right.right=parent.right.right
+            parent.right.left.left.left = parent.left
+            parent =parent.right.left
+            parent.right.left = saveRight
+            parent.left.right =saveLeft
+        }
 
-   
-    treeGraph(){       
+        return parent
+    }
+  
+
+    treeGraph(){
         nodes = "";
         connections = "";
-        this.#treeGraphRecursive(this.root);
-        // console.log(nodes,connections);
+        if(this.root!=null){
+            this.#treeGraphRecursive(this.root);
+        }
+
         return nodes + connections;
     }
     #treeGraphRecursive(current){
         if(current.left != null){
             this.#treeGraphRecursive(current.left);
-            connections += `S_${current.item.carnet} -> S_${current.left.item.carnet};\n`;
+            connections += `S_${current.item.carnet} -> S_${current.left.item.carnet} [color="white"];\n`;
         }
-        nodes += `S_${current.item.carnet}[label="${current.item.nombre}"];`
+        nodes += `S_${current.item.carnet}[label="${current.item.nombre}\\nAltura:${current.height}"  style=filled];`
         if(current.right != null){
             this.#treeGraphRecursive(current.right);
-            connections += `S_${current.item.carnet} -> S_${current.right.item.carnet};\n`;
+            connections += `S_${current.item.carnet} -> S_${current.right.item.carnet} [color="white"];\n`;
         }
     }
-    
-   
-    inOrder(){
+    authenticate() {
+        let html = this.#authenticateRecursive(this.root);
+        return html;
+    }
+    #authenticateRecursive(current) {
+        let key = false;
+        if (current.left != null) {
+           return key= this.#authenticateRecursive(current.left);
+        }
+        
+        if (current.right != null) {
+            key= this.#authenticateRecursive(current.right);
+        }
+        return row;
+    }
+
+    inOrder() {
         let html = this.#inOrderRecursive(this.root);
         return html;
     }
-    #inOrderRecursive(current){
+    #inOrderRecursive(current) {
         let row = "";
-        if(current.left != null){
+        if (current.left != null) {
             row += this.#inOrderRecursive(current.left);
         }
-        row +=`
+        row += `
             <tr>
                 <td data-th="Carnet">${current.item.carnet}</td>
                 <td data-th="Nombre">${current.item.nombre}</td>
                 <td data-th="Password">${current.item.password}</td>
             </tr>
         `;
-        if(current.right != null){
+        if (current.right != null) {
             row += this.#inOrderRecursive(current.right);
         }
         return row;
     }
 
-    preOrder(){
+    preOrder() {
         let html = this.#preOrderRecursive(this.root);
         return html;
     }
-    #preOrderRecursive(current){
+    #preOrderRecursive(current) {
         let row = "";
-        row +=`
+        row += `
             <tr>
                   <td data-th="Carnet">${current.item.carnet}</td>
                   <td data-th="Nombre">${current.item.nombre}</td>
                 <td data-th="Password">${current.item.password}</td>
             </tr>
         `;
-        if(current.left != null){
+        if (current.left != null) {
             row += this.#inOrderRecursive(current.left);
         }
-        if(current.right != null){
+        if (current.right != null) {
             row += this.#inOrderRecursive(current.right);
         }
         return row;
     }
 
-    postOrder(){
+    postOrder() {
         let html = this.#postOrderRecursive(this.root);
         return html;
     }
-    #postOrderRecursive(current){
+    #postOrderRecursive(current) {
         let row = "";
-        if(current.left != null){
+        if (current.left != null) {
             row += this.#inOrderRecursive(current.left);
         }
-        if(current.right != null){
+        if (current.right != null) {
             row += this.#inOrderRecursive(current.right);
         }
-        row +=`
+        row += `
             <tr>
                   <td data-th="Carnet">${current.item.carnet}</td>
                   <td data-th="Nombre">${current.item.nombre}</td>
