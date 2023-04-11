@@ -1,3 +1,14 @@
+if(localStorage.getItem("authenticateToken")){
+    let data=JSON.parse(localStorage.getItem("authenticateData"))
+    if(data.user!=="admin"&&data.password!=="admin"){
+        
+        window.location.replace("index.html")
+
+    }
+}else {
+    window.location.replace("index.html") 
+}
+
 let avlTree = new AvlTree();
 
 function loadStudentsForm(event) {
@@ -107,6 +118,14 @@ $('ul.tabs li a').on('click', function () {
 });
 
 function logOut() {
+    let authenticateData=JSON.parse(localStorage.getItem("authenticateData"))
+    authenticateData.user="none"
+    authenticateData.password="none"
+    localStorage.setItem("authenticateData",JSON.stringify(authenticateData))
+    localStorage.setItem("authenticateToken",false)
+    localStorage.setItem("firstLogIn",false)
     window.location.replace("index.html")
+
+    
 }
 $(document).ready(showLocalStudents);

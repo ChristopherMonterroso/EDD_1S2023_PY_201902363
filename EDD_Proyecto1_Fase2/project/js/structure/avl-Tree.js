@@ -1,9 +1,13 @@
 class AvlNode {
     constructor(item) {
+        
         this.item = item;
         this.left = null;
         this.right = null;
         this.height = 0;
+        this.circularList=new CircularList();
+        this.nAryTree= new nAryTree();
+        this.sparseMatrix = new sparseMatrix();
     }
 }
 let = nodes = "";
@@ -122,6 +126,41 @@ class AvlTree {
         return parent
     }
   
+    authenticate(user,password){
+        this.current = this.root
+        return this.#authenticateRecursive(user,password)
+    }
+
+    #authenticateRecursive(user,password){
+        if(this.current && this.current.item.carnet.toString()===user && this.current.item.password===password){
+            return this.current
+        }else if( this.current && this.current.item.carnet<user){
+            this.current = this.current.right
+            return this.#authenticateRecursive(user,password)
+        }else if(this.current && this.current.item.carnet>user){
+            this.current = this.current.left
+            return this.#authenticateRecursive(user,password)
+        }
+        return false
+    }
+    save(user,password,Binnacle,nAry){
+        this.current = this.root
+        return this.#saveRecursive(user,password,Binnacle,nAry)
+    }
+    #saveRecursive(user,password,Binnacle,nAry){
+        if(this.current && this.current.item.carnet.toString()===user && this.current.item.password===password){
+            this.current.circularList=Binnacle
+            this.current.nAryTree=nAry
+            return this.current
+        }else if( this.current && this.current.item.carnet<user){
+            this.current = this.current.right
+            return this.#saveRecursive(user,password,Binnacle,nAry)
+        }else if(this.current && this.current.item.carnet>user){
+            this.current = this.current.left
+            return this.#saveRecursive(user,password,Binnacle,nAry)
+        }
+        return false
+    }
 
     treeGraph(){
         nodes = "";
@@ -143,21 +182,7 @@ class AvlTree {
             connections += `S_${current.item.carnet} -> S_${current.right.item.carnet} [color="white"];\n`;
         }
     }
-    authenticate() {
-        let html = this.#authenticateRecursive(this.root);
-        return html;
-    }
-    #authenticateRecursive(current) {
-        let key = false;
-        if (current.left != null) {
-           return key= this.#authenticateRecursive(current.left);
-        }
-        
-        if (current.right != null) {
-            key= this.#authenticateRecursive(current.right);
-        }
-        return row;
-    }
+    
 
     inOrder() {
         let html = this.#inOrderRecursive(this.root);

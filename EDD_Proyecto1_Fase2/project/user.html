@@ -6,32 +6,75 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../Styles/userStyles.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <title>EDD GoDrive</title>
 </head>
 
 <body>
-    <div class="wrapper">
-        <div class="one">One</div>
-        <div class="two">Two</div>
-        <div class="three">
-            <div class="welcome-div">
-                <h2>Bienvenido 201902363</h2>
-                <button class="welcome-button">Crear Carpeta</button>
-                <button class="welcome-button">Eliminar carpeta</button>
-    
-            </div>
+    <div class="wrapper-buttons">
+        <div class="welcome-div">
+            <h2 id="user"></h2>
+            <h3>Nueva carpeta</h3>
+            <input type="text" id="folder-name" placeholder="Nombre de la carpeta" required>
+            <button class="welcome-button" onclick="createFolder()">Crear Carpeta</button>
+            <button class="welcome-button" onclick="deleteFolder()">Eliminar carpeta</button>
+            <h3 class="h3-2">Nuevo archivo</h3>
+            <input type="text" id="file-name"placeholder="Nombre del archivo" required>
+            <button class="welcome-button"  onclick="createFile()">Crear archivo</button>
             <div class="upload-button">
                 <img src="./svg/upload-svg.svg" alt="cargar archivos" id="img-button">
-                <input type="file" class ="inputFile" id="inputFile" accept="JSON/*" required>
+                <input type="file" class ="inputFile" id="inputFile" accept="application/pdf, .txt, image/*" required>
                 <p>Subir archivos</p>
             </div>
         </div>
-       
+
+        <div class="logout-div">
+            <button id="logout-button" class="logout-button" onclick="logout()">Cerrar sesión</button>
+        </div>
+    </div>
+    <div class="wrapper-files">
+        <div class="content">
+            <div class="path">
+                <label for="input-path">Ruta</label>
+                <input type="text" id="input-path" class="input-path" value="/" disabled>
+                <button class="desk-button" onclick="showDesk()">Escritorio</button>
+            </div>
+
+            <div class="content-buttons">
+                <button class="content-button" onclick="reportFolders()">Reporte carpetas</button>
+                <button class="content-button" onclick="reportFiles()">Reporte archivos</button>
+                <button class="content-button" onclick="reportBinnacle()">Bitacora</button>
+            </div>
+            <div class="files">
+                <div class="report" id="report_files" style="display: none;">
+                    <h4>Reporte de Archivos</h4>
+                    <img id="graph_files" src="">
+                </div>
+                <div class="report" id="report_folders" style="display: none;">
+                    <h4>Reporte de carpetas</h4>
+                    <img id="graph_folders" src="">
+                </div>
+                <div class="report" id="report_binnacle" style="display: none;">
+                    <h4>Reporte de Bitacora</h4>
+                    <img id="graph_binnacle" src="">
+                </div>
+                <div class="desk-container" id="desk-container">
+                    <div class="desk" id="desk">
         
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
 
 
     </div>
-
+    <script src="./js/structure/avl-Tree.js"></script>
+    <script src="./js/structure/circularList.js"></script>
+    <script src="./js/structure/nAryTree.js"></script>
+    <script src="./js/structure/sparse-matrix.js"></script>
     <script src="./js/user.js"></script>
 </body>
 
