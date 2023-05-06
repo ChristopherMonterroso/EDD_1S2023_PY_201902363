@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Styles/adminStyles.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600" rel="stylesheet">
+    <title>EDD GoDrive - Admin</title>
+
+</head>
+
+<body>
+    <header>
+        <div class="logo">Administrador</div>
+        <div class="hamburguer">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <nav class="nav-bar">
+            <ul class="tabs">
+                <li><a href="#tabStudent" class="active">Ver estudiantes</a></li>
+                <li><a href="#tabTree" onclick=showAvlGraph()>Árbol de estudiantes</a></li>
+                <li><a href="#uploadFile">Carga masiva</a></li>
+                <li><a href="#" onclick=logOut()>Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="section">
+        <article id="tabStudent">
+            <h1>Estudiantes en el sistema</h1>
+            <form onsubmit="showStudentsForm(event)">
+                <div class="radio-menu">
+                    <input type="radio" name="opcion" id="opcion1" value="inOrder" checked>
+                    <label for="opcion1">In-orden</label>
+
+                    <input type="radio" name="opcion" id="opcion2" value="preOrder">
+                    <label for="opcion2">Post-orden</label>
+
+                    <input type="radio" name="opcion" id="opcion3" value="postOrder">
+                    <label for="opcion3">Pre-orden</label>
+                </div>
+                <button type="submit" class="button-mostrar">Mostrar</button>
+            </form>
+            <table class="table" id="table">
+                <thead>
+                    <th>Carnet</th>
+                    <th>Nombre</th>
+                    <th>Password</th>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+
+        </article>
+
+        <article id="tabTree">
+            <h1>Árbol AVL</h1>
+            <img class="graph" id="graph">
+        </article>
+
+        <article id="uploadFile">
+            <h1>Cargar archivo JSON.</h1>
+            <form onsubmit="loadStudentsForm(event)">
+                <div class="drag">
+                    <input type="file" id="inputFile" accept="JSON/*" required>
+                </div>
+                <button type="submit" class="button">Cargar estudiantes</button>
+            </form>
+        </article>
+    </div>
+    <script>
+        hamburger = document.querySelector(".hamburguer");
+        navBar = document.querySelector(".nav-bar");
+
+        hamburger.onclick = function () {
+            navBar.classList.toggle("active");
+
+        }
+
+    </script>
+    <script>
+        function hacerZoom(event) {
+      var imagen = event.target;
+      if (imagen.style.transform === "scale(1.25)") {
+        // Si ya está en escala 2, volver a la escala 1 (predeterminada)
+        imagen.style.transform = "scale(1)";
+        imagen.style.cursor= "zoom-in";
+      } else {
+        // Si no está en escala 2, hacer zoom a escala 2
+        imagen.style.transform = "scale(1.25)";
+        imagen.style.cursor= "zoom-out";
+      }
+    }
+
+    // Obtener la imagen y agregar el evento de click para hacer zoom
+    var imagen = document.querySelector('.graph');
+    imagen.addEventListener('click', hacerZoom);
+    </script>
+    <script src="./js/structure/circularList.js"></script>
+    <script src="./Hash.js"></script>
+    <script src="./js/lib/cycle.js"></script>
+    <script src="./js/structure/nAryTree.js"></script>
+    <script src="./js/structure/sparse-matrix.js"></script>
+    
+    <script src="./js/structure/avl-Tree.js"></script>
+    <script src="./js/admin.js"></script>
+</body>
+
+</html>
