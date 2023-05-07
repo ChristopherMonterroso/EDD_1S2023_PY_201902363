@@ -1,4 +1,4 @@
-class nodeNA {
+class node {
 
     constructor(folderName) {
         this.folderName = folderName;
@@ -9,7 +9,7 @@ class nodeNA {
 }
 class nAryTree {
     constructor() {
-        this.root = new nodeNA('/');
+        this.root = new node('/');
         this.root.id = 0;
         this.size = 1; // Para generar los ids
         this.repeat = 0;
@@ -19,7 +19,7 @@ class nAryTree {
         let fatherNode = this.getFolder(fatherPath);
         if (fatherNode) {
             folderName = this.repeatFolder(folderName, fatherNode)
-            let newNode = new nodeNA(folderName);
+            let newNode = new node(folderName);
             this.size += 1;
             newNode.id = this.size;
             fatherNode.children.push(newNode);
@@ -119,7 +119,7 @@ class nAryTree {
     graph() {
         let nodes = "";
         let connections = "";
-
+        let weight = 1;
         let node = this.root;
         let queue = [];
         queue.push(node);
@@ -129,10 +129,12 @@ class nAryTree {
                 let node = queue.shift();
                 nodes += `S_${node.id}[label="${node.folderName}" style=filled,fillcolor="yellow", shape=folder];\n`;
                 node.children.forEach(item => {
-                    connections += `S_${node.id} -> S_${item.id} [color="black"];\n`
+                    connections += `S_${node.id} -> S_${item.id} [ label="${weight} "color="black"];\n`
                     queue.push(item);
                 });
+
             }
+            weight++;
         }
         return 'node[shape="record"];\n' + nodes + '\n' + connections;
     }

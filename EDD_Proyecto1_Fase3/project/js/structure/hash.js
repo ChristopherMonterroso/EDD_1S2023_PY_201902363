@@ -1,10 +1,15 @@
+
 class HashNode{
     constructor(carnet, nombre, password){
         this.carnet = carnet;
         this.nombre = nombre;
         this.password = password;
+
     }
+ 
 }
+
+
 
 // CLASE TABLA HASH
 class HashTable{
@@ -18,46 +23,32 @@ class HashTable{
     }
 
     // MÉTODO INSERTAR ELEMENTO
-    insert(carnet, nombre, password){
-        // OBTENER EL ÍNDICE DE LA FÓRMULA
-        // FÓRMULA: (SUMA ASCII's DEL CARNET) % CAPACIDAD ACTUAL
+    insert(carnet, nombre, password) {
         let indice = this.calcularIndice(carnet);
-        // CREAR NUEVO NODO
-        let nodoNuevo = new HashNode(carnet, nombre, password);
-        // COMPROBAR QUE EL INDICE SEA MENOR QUE A CAPACIADAD
-        if(indice < this.capacidad){
-            // VERIFICAR SI EN EL LA POSICIÓN DEL ARRAY ES NULO
-            if(this.table[indice] == null){
-                // SE AGREGA EL VALOR EN LA POSICIÓN
+
+        let nodoNuevo = new HashNode(carnet, nombre, sha256(password));
+
+        // En la línea anterior se encripta la contraseña utilizando el modelo sha256
+        if (indice < this.capacidad) {
+            if (this.table[indice] == null) {
                 this.table[indice] = nodoNuevo;
-                // AGREGAR A LOS ESPACIOS USADOS
                 this.espaciosUsados++;
-            }else{
-                // OPERACIONES CUANDO EXISTE UNA COLISIÓN
-                // NÚMERO DE INTENTOS PARA LA FÓRMULA DE COLISIÓNES
+            } else {
                 let contador = 1;
-                // REASIGNAR EL ÍNDICE
-                // FÓRMULA DE COLISIÓNES:
-                // [(SUM ASCII's CARNET) % CAPACIDAD ACTUAL] + INTENTOS ^ 2
                 indice = this.recalcularIndice(carnet, contador);
-                // RECALCULAR HASTA ENCONTRAR UN ÍNDICE QUE ESTÉ VACÍO EN EL ARRAY
-                while(this.table[indice] != null){
-                    // AUMENTAR EL CONTADOR
+                while (this.table[indice] != null) {
                     contador++;
-                    // BUSCAR OTRA POSICIÓN CON EL CONTADOR AUMENTADO
                     indice = this.recalcularIndice(carnet, contador);
                 }
-                // ASIGNAR ESPACIO AL ÍNDICE
-                this.table[indice] =  nodoNuevo;
-                // AGREGAR A LOS ESPACIOS USADOS
+                this.table[indice] = nodoNuevo;
                 this.espaciosUsados++;
             }
 
-            // MÉTODO QUE AMPLÍA EL ARRAY SI LLEGA AL 75% DE SU CAPACIDAD
             this.table.sort(this.compararPorCarnet)
             this.checkCapacidad();
         }
 
+    
     }
     compararPorCarnet(a, b) {
         if (a.carnet < b.carnet) {
@@ -177,15 +168,17 @@ class HashTable{
         return null;
     }
 
+    
     show(tbl){
         this.table.forEach(value => {
             if(value!=null){
+                console.log("aqui")
                 let row=tbl.insertRow()
                 let cell1=row.insertCell(0)
                 let cell2=row.insertCell(1)
                 let cell3=row.insertCell(2)
-                cell1.innerHTML=value.nombre
-                cell2.innerHTML=value.carnet
+                cell1.innerHTML=value.carnet
+                cell2.innerHTML=value.nombre
                 cell3.innerHTML=value.password
             }
         })

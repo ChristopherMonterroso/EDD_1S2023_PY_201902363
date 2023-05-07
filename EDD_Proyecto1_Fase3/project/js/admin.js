@@ -11,6 +11,17 @@ if(localStorage.getItem("authenticateToken")){
 
 let avlTree = new AvlTree();
 
+let Hash= new HashTable();
+if(localStorage.getItem("TokenHash")){
+    Hash.table=JSON.parse(localStorage.getItem("TokenHash")).table
+    Hash.capacidad=JSON.parse(localStorage.getItem("TokenHash")).capacidad
+    Hash.espaciosUsados=JSON.parse(localStorage.getItem("TokenHash")).espaciosUsados
+    document.addEventListener('DOMContentLoaded', function() {
+        const tbl=document.getElementById("table")
+        Hash.show(tbl)
+    });
+
+}
 function loadStudentsForm(event) {
     event.preventDefault();
     
@@ -25,19 +36,8 @@ function loadStudentsForm(event) {
         reader.onload = () => {
 
             studentsArray = JSON.parse(reader.result).alumnos;
-            
-            $('#table tbody').html(
-                studentsArray.map((item, index) => {
-                    return (`
-                        <tr>
-                            <td data-th="Carnet">${item.carnet}</td>
-                            <td data-th="Nombre">${item.nombre}</td>
-                            <td data-th="Password">${item.password}</td>
-                        </tr>
-                    `);
-                }).join('')
-            )
-            
+            console.log("Loading students)")
+
             for (let i = 0; i < studentsArray.length; i++) {
                 let item={
                     carnet:studentsArray[i].carnet,
@@ -45,11 +45,15 @@ function loadStudentsForm(event) {
                     password:studentsArray[i].password,
                     carpeta_raiz:studentsArray[i].carpeta_raiz
                 }
+                Hash.insert(studentsArray[i].carnet,studentsArray[i].nombre,studentsArray[i].password);
                 avlTree.insert(item);
             }
+            
             // GUARDAR EN LOCAL STORAGE
             localStorage.setItem("avlTree", JSON.stringify(avlTree))
+            localStorage.setItem("TokenHash", JSON.stringify(Hash))
             alert("Estudiantes cargados")
+            Hash.show("table");
             
         }
     } catch (error) {
@@ -59,12 +63,17 @@ function loadStudentsForm(event) {
     }
 
 }
+function updateTable(){
+    const tbl=document.getElementById("table")
+    let rows=tbl.rows.length
+    for (let i = rows-1; i >= 0; i--) {
+        tbl.deleteRow(i)
+    }
+    Hash.show(tbl)
+
+}
 function showLocalStudents() {
-    let temp = localStorage.getItem("avlTree")
-    avlTree.root = JSON.parse(temp).root;
-    $('#table tbody').html(
-        avlTree.inOrder()
-    )
+    
 }
 function showAvlGraph(){
     let url = 'https://quickchart.io/graphviz?graph=';
@@ -72,34 +81,7 @@ function showAvlGraph(){
     console.log(body);
     $("#graph").attr("src", url + body);
 }
-function showStudentsForm(e){
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const form = Object.fromEntries(formData);
-    
-    if(avlTree.root !== null){
-        switch(form.opcion){
-            case 'inOrder':
-                $('#table tbody').html(
-                    avlTree.inOrder()
-                )
-                break;
-            case 'preOrder':
-                $('#table tbody').html(
-                    avlTree.preOrder()
-                )
-                break;
-            case 'postOrder':
-                $('#table tbody').html(
-                    avlTree.postOrder()
-                )
-                break;
-            default:
-                $('#table tbody').html("")
-                break;
-        }
-    }
-}
+
 
 //función para activar una pestaña al ser presionadas
 $('ul.tabs li a:first').addClass('active');

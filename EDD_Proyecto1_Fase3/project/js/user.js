@@ -20,11 +20,12 @@ if (localStorage.getItem("avlTree") && localStorage.getItem("authenticateData"))
   Matrix.head = User.sparseMatrix.head
   Matrix.xSize = User.sparseMatrix.xSize
   Matrix.ySize = User.sparseMatrix.ySize
-
+  
   document.addEventListener('DOMContentLoaded', function () {
     let user = document.getElementById("user")
     user.innerText = "Bienvenido " + User.item.carnet.toString()
     showDesk()
+    avlTree.block_chain(User.item.carnet)
   });
 }
 function createFolder() {
@@ -152,52 +153,126 @@ document.getElementById("inputFile").addEventListener("change", function () {
   const file = this.files[0];
   n = 1
 
-  if (file){
+  if (file) {
     let path = $('#input-path').val();
-  if (file.type === "text/plain") {
-    //console.log("es texto plano")
-    let fr = new FileReader();
-    fr.readAsText(file)
-    //console.log(Nario.getFolder(path).files)
-    nAry.getFolder(path).files.push({
-      name: nAry.repeatFile(file.name, nAry.getFolder(path).files),
-      content: parseBase64(fr.result),
-      type: file.type
-    })
-    //console.log(nAry.getFolder(path).files)
-    $('#desk').html(nAry.getHTML(path))
-    save()
-    showCLGraph()
-    showNAGraph()
-  } else if (file.type.startsWith('image/') || file.type === "application/pdf") {
-    let fr = new FileReader();
-    fr.readAsText(file)
-    nAry.getFolder(path).files.push({
-      name: nAry.repeatFile(file.name, nAry.getFolder(path).files),
-      content: parseBase64(fr.result),
-      type: file.type
-    })
-    $('#desk').html(nAry.getHTML(path))
-    save()
-    showCLGraph()
-    showNAGraph()
-  }
-  n += 1
+    if (file.type === "text/plain") {
+      //console.log("es texto plano")
+      let fr = new FileReader();
+      fr.readAsText(file)
+      //console.log(Nario.getFolder(path).files)
+      nAry.getFolder(path).files.push({
+        name: nAry.repeatFile(file.name, nAry.getFolder(path).files),
+        content: parseBase64(fr.result),
+        type: file.type
+      })
+      //console.log(nAry.getFolder(path).files)
+      $('#desk').html(nAry.getHTML(path))
+      save()
+      showCLGraph()
+      showNAGraph()
+    } else if (file.type.startsWith('image/') || file.type === "application/pdf") {
+      let fr = new FileReader();
+      fr.readAsText(file)
+      nAry.getFolder(path).files.push({
+        name: nAry.repeatFile(file.name, nAry.getFolder(path).files),
+        content: parseBase64(fr.result),
+        type: file.type
+      })
+      $('#desk').html(nAry.getHTML(path))
+      save()
+      showCLGraph()
+      showNAGraph()
+    }
+    n += 1
 
   }
-  
+
   return true
 })
+let blockChain = new BlockChain();
 
-  // Realizar operaciones con el archivo seleccionado, como enviarlo al servidor o procesarlo localmente
+// ACTUALIZAR AMBOS CHATS 
+function updateChats(){
+    let transmitter = $('#transmitter').val();
+    let receiver = $('#receiver').val();
+    $('#transmitter-chat').html(blockChain.getMessages(transmitter, receiver));
+    $('#receiver-chat').html(blockChain.getMessages(receiver, transmitter));
+}
 
-  function logout() {
-    let TokenLogin=JSON.parse(localStorage.getItem("authenticateData"))
-    TokenLogin.user="none"
-    TokenLogin.password="none"
-    localStorage.setItem("authenticateData",JSON.stringify(TokenLogin))
+
+async function sendMessage(whoSend){
+    // OBTENER VALORES DEL SELECT 
+    let transmitter = $('#transmitter').val();
+    let receiver = $('#receiver').val();
     
-    window.location.replace("index.html")
+    // VERIFICAR QUE HAYA SELECCIONADO UN USUARIO
+    if(transmitter && receiver){
+        switch(whoSend){
+            case 'transmitter':
+                // OBTENER MENSAJE A ENVIAR
+                let msgt = $('#msg-transmitter').val();
+                // INSERTAR MENSAJE EN BLOCKCHAIN
+                await blockChain.insert(transmitter, receiver, msgt);
+                $('#msg-transmitter').val("");
+            break;
+            case 'receiver':
+                // OBTENER MENSAJE A ENVIAR
+                let msgr = $('#msg-receiver').val();
+                // INSERTAR MENSAJE EN BLOCKCHAIN
+                await blockChain.insert(receiver, transmitter, msgr);
+                $('#msg-receiver').val("");
+            break;
+        }
+        alert("Mensaje enviado");
+        // ACTUALIZAR CHATS
+        updateChats();
+    }else{
+        alert("No ha seleccionado Receptop o Emisor");
+    }
+}
+
+
+function getBlock(index){
+    if(index === 0){
+        let html = blockChain.blockReport(index);
+        if(html){
+            $('#show-block').html(html);
+        }
+    }else{
+        let currentBlock = Number($('#block-table').attr('name'));
+        
+        if(index < 0){ // MOSTRAR EL ANTERIOR
+            if(currentBlock - 1 < 0){
+                alert("No existen elementos anteriores");
+            }else{
+                let html = blockChain.blockReport(currentBlock - 1);
+                if(html){
+                    $('#show-block').html(html);
+                }
+            }
+
+        }else if(index > 0){ // MOSTRAR EL SIGUIENTE
+            if(currentBlock + 1 > blockChain.size ){
+                alert("No existen elementos siguientes");
+            }else{
+                let html = blockChain.blockReport(currentBlock + 1);
+                if(html){
+                    $('#show-block').html(html);
+                }
+            }
+        }
+    }
+}
+
+// Realizar operaciones con el archivo seleccionado, como enviarlo al servidor o procesarlo localmente
+
+function logout() {
+  let TokenLogin = JSON.parse(localStorage.getItem("authenticateData"))
+  TokenLogin.user = "none"
+  TokenLogin.password = "none"
+  localStorage.setItem("authenticateData", JSON.stringify(TokenLogin))
+
+  window.location.replace("index.html")
 }
 
 

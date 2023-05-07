@@ -33,7 +33,7 @@
     <div class="section">
         <article id="tabStudent">
             <h1>Estudiantes en el sistema</h1>
-            <form onsubmit="showStudentsForm(event)">
+           <!-- <form onsubmit="showStudentsForm(event)">
                 <div class="radio-menu">
                     <input type="radio" name="opcion" id="opcion1" value="inOrder" checked>
                     <label for="opcion1">In-orden</label>
@@ -45,7 +45,7 @@
                     <label for="opcion3">Pre-orden</label>
                 </div>
                 <button type="submit" class="button-mostrar">Mostrar</button>
-            </form>
+            </form>-->
             <table class="table" id="table">
                 <thead>
                     <th>Carnet</th>
@@ -102,9 +102,11 @@
     var imagen = document.querySelector('.graph');
     imagen.addEventListener('click', hacerZoom);
     </script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
     <script src="./js/structure/circularList.js"></script>
-    <script src="./Hash.js"></script>
+    
     <script src="./js/lib/cycle.js"></script>
+    <script src="./js/structure/hash.js"></script>
     <script src="./js/structure/nAryTree.js"></script>
     <script src="./js/structure/sparse-matrix.js"></script>
     
