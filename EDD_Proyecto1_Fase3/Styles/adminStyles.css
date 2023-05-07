@@ -284,6 +284,14 @@ input[type="radio"] {
 	color: #111;
   }
 
+  .mt-5{
+
+	background-color: white;
+	width: 90%;
+	padding: 15px;
+	margin: 0 auto;
+  }
+
 
   
 

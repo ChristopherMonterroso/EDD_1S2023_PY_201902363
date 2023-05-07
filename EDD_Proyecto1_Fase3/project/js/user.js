@@ -197,9 +197,14 @@ function updateChats(){
     let receiver = $('#receiver').val();
     $('#transmitter-chat').html(blockChain.getMessages(transmitter, receiver));
     $('#receiver-chat').html(blockChain.getMessages(receiver, transmitter));
+    
 }
 
-
+function save() {
+  let TokenLogin = JSON.parse(localStorage.getItem("authenticateData"))
+  avlTree.save(TokenLogin.user.toString(), TokenLogin.password, Binnacle, nAry)
+  localStorage.setItem("avlTree", JSON.stringify(avlTree))
+}
 async function sendMessage(whoSend){
     // OBTENER VALORES DEL SELECT 
     let transmitter = $('#transmitter').val();
@@ -224,8 +229,10 @@ async function sendMessage(whoSend){
             break;
         }
         alert("Mensaje enviado");
+        
         // ACTUALIZAR CHATS
         updateChats();
+        
     }else{
         alert("No ha seleccionado Receptop o Emisor");
     }
@@ -271,13 +278,8 @@ function logout() {
   TokenLogin.user = "none"
   TokenLogin.password = "none"
   localStorage.setItem("authenticateData", JSON.stringify(TokenLogin))
-
+  localStorage.setItem("BlockChain", CircularJSON.stringify(blockChain))
   window.location.replace("index.html")
 }
 
 
-function save() {
-  let TokenLogin = JSON.parse(localStorage.getItem("authenticateData"))
-  avlTree.save(TokenLogin.user.toString(), TokenLogin.password, Binnacle, nAry)
-  localStorage.setItem("avlTree", JSON.stringify(avlTree))
-}

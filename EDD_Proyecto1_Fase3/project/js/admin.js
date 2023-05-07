@@ -22,6 +22,17 @@ if(localStorage.getItem("TokenHash")){
     });
 
 }
+
+let blockChain = new BlockChain();
+if(localStorage.getItem("BlockChain")){
+    console.log("here")
+    blockChain.head= JSON.parse(localStorage.getItem("BlockChain")).head
+    blockChain.end= JSON.parse(localStorage.getItem("BlockChain")).end
+    blockChain.size=JSON.parse(localStorage.getItem("BlockChain")).size
+    console.log(blockChain)
+    
+}
+
 function loadStudentsForm(event) {
     event.preventDefault();
     
@@ -72,14 +83,36 @@ function updateTable(){
     Hash.show(tbl)
 
 }
-function showLocalStudents() {
-    
-}
-function showAvlGraph(){
-    let url = 'https://quickchart.io/graphviz?graph=';
-    let body = `digraph G { node[shape=circle] bgcolor=transparent ${avlTree.treeGraph()} }`
-    console.log(body);
-    $("#graph").attr("src", url + body);
+function getBlock(index){
+    if(index === 0){
+        let html = blockChain.blockReport(index);
+        if(html){
+            $('#show-block').html(html);
+        }
+    }else{
+        let currentBlock = Number($('#block-table').attr('name'));
+
+        if(index < 0){ // MOSTRAR EL ANTERIOR
+            if(currentBlock - 1 < 0){
+                alert("No existen elementos anteriores");
+            }else{
+                let html = blockChain.blockReport(currentBlock - 1);
+                if(html){
+                    $('#show-block').html(html);
+                }
+            }
+
+        }else if(index > 0){ // MOSTRAR EL SIGUIENTE
+            if(currentBlock + 1 > blockChain.size ){
+                alert("No existen elementos siguientes");
+            }else{
+                let html = blockChain.blockReport(currentBlock + 1);
+                if(html){
+                    $('#show-block').html(html);
+                }
+            }
+        }
+    }
 }
 
 
@@ -110,4 +143,4 @@ function logOut() {
 
     
 }
-$(document).ready(showLocalStudents);
+

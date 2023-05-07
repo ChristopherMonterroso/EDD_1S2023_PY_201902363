@@ -81,7 +81,7 @@ class BlockChain{
         if(this.head !== null){
             let temp = this.head;
             while(temp !== null){
-                console.log(temp);
+                console.log(temp.message);
                 temp = temp.next;
             }
         }
@@ -116,9 +116,11 @@ class BlockChain{
     }
 
     blockReport(index = 0){
+
         if(this.head){
             let temp = this.head;
             while(temp !== null){
+               
                 if(temp.index === index){
                     // EL NOMBRE DE LA TABLA TIENE EL INDEX DEL BLOQUE, PARA PODER OBTENER EL SIGUIENTE O EL ANTERIOR
                     return `
@@ -130,7 +132,7 @@ class BlockChain{
                                 </tr>
                                 <tr>
                                     <th scope="row">Timestamp</th>
-                                    <td>${temp.getFormatDate()}</td>
+                                    <td>${temp.timestamp}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Transmitter</th>
